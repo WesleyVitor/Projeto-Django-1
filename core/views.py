@@ -10,6 +10,7 @@ from .models import Produto
 def index(request):
     context = {
         "produtos":Produto.objects.all()
+        
     }
     return render(request, 'index.html', context)
 
@@ -50,5 +51,6 @@ def produto(request):
         }
         return render(request, 'produto.html', context)
     else:
+        messages.error(request, "Usuário não autenticado")
         return redirect('index')
 
